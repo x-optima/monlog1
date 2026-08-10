@@ -1,0 +1,14 @@
+# Пример cron: запуск скрипта каждую минуту
+#
+# Установка: crontab -e, вставить строку с полным путём к скрипту
+# Проверка: crontab -l
+#
+# Поля времени: минута час день_месяца месяц день_недели
+# * * * * * = каждую минуту
+
+# Журнал в /var/log (как в задании)
+# >> дописывает stdout, 2>&1 направляет stderr туда же
+* * * * * /usr/bin/python3 /home/kvn/netology/monlog1/awesome-monitoring/awesome_monitoring.py >> /var/log/awesome-monitoring-cron.log 2>&1
+
+# Если нет прав на /var/log — свой каталог через LOG_DIR:
+# * * * * * LOG_DIR=/home/kvn/netology/monlog1/awesome-monitoring/logs /usr/bin/python3 /home/kvn/netology/monlog1/awesome-monitoring/awesome_monitoring.py >> /tmp/awesome-monitoring-cron.log 2>&1

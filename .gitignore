@@ -1,0 +1,8 @@
+
+# Данные контейнеров (появляются после запуска)
+sandbox/influxdb/data/
+sandbox/chronograf/data/
+sandbox/kapacitor/data/
+
+# Заметки
+LONGRID.md
