@@ -5,8 +5,6 @@
 - скриншоты — `screenshots/`
 - задание со звёздочкой — `awesome-monitoring/`
 
-Формат каждого пункта: сначала вопрос из задания, затем ответ.
-
 ---
 
 ## 1
@@ -164,7 +162,7 @@ Chronograf: http://localhost:8888
 
 В `docker-compose.yml` для каталогов указан суффикс `:Z`. У сервиса `telegraf` заданы повышенные права (`privileged`), подключение `/var/run/docker.sock` и порты из задания.
 
-![Chronograf](screenshots/01-chronograf-home.png)
+![Chronograf](screenshots/scr7_1.png)
 
 ---
 
@@ -194,7 +192,7 @@ WHERE time > now() - 15m
 GROUP BY time(10s) FILL(null)
 ```
 
-![Утилизация процессора](screenshots/02-cpu-usage-system.png)
+![Утилизация процессора](screenshots/scr8_1.png)
 
 ---
 
@@ -242,7 +240,7 @@ GROUP BY time(10s) FILL(null)
 
 После перезапуска в `telegraf.autogen` есть наборы метрик `docker`, `docker_container_cpu`, `docker_container_mem`, `docker_container_status` и связанные с ними.
 
-![Метрики Docker](screenshots/03-docker-measurements.png)
+![Метрики Docker](screenshots/scr9_1.png)
 
 ---
 
@@ -291,7 +289,9 @@ LOG_DIR=./awesome-monitoring/logs python3 awesome-monitoring/awesome_monitoring.
 
 #### в) Пример лога
 
-[`awesome-monitoring/example-26-08-10-awesome-monitoring.log`](awesome-monitoring/example-26-08-10-awesome-monitoring.log) — не менее 5 записей.
+[`awesome-monitoring/example-26-08-13-awesome-monitoring.log`](awesome-monitoring/example-26-08-13-awesome-monitoring.log) — не менее 5 записей.
+
+![Пример лога](screenshots/scr10_1.png)
 
 ---
 
@@ -308,4 +308,4 @@ LOG_DIR=./awesome-monitoring/logs python3 awesome-monitoring/awesome_monitoring.
 
 ### Ответ
 
-Пункт необязательный, к сдаче не прилагается.
+Не прилагается.

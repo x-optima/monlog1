@@ -2,8 +2,6 @@
 # Запуск: source .env-latest && docker compose up -d --build
 # Суффикс :Z у томов — по рекомендации из задания (SELinux).
 
-version: '3'
-
 services:
 
   # InfluxDB — хранилище временных рядов
@@ -39,10 +37,13 @@ services:
     image: "telegraf"
     # Нужно для плагина inputs.docker
     privileged: true
+    # Entrypoint сбрасывает процесс на uid telegraf; остаёмся root,
+    # чтобы стабильно читать /var/run/docker.sock
     user: root
+    entrypoint: ["/usr/bin/telegraf"]
     # GID группы docker на хосте: getent group docker
     group_add:
-      - "124"
+      - "${DOCKER_GID:-125}"
     environment:
       # Имя узла в Chronograf
       HOSTNAME: "telegraf-getting-started"
@@ -70,6 +71,9 @@ services:
       args:
         KAPACITOR_TAG: ${KAPACITOR_TAG}
     image: "kapacitor"
+    # Entrypoint иначе сбрасывает на uid 999 — нет записи в bind-mount ./data
+    environment:
+      KAPACITOR_AS_ROOT: "true"
     volumes:
       - ./kapacitor/data/:/var/lib/kapacitor:Z
       - ./kapacitor/config/:/etc/kapacitor/:Z
@@ -77,6 +81,8 @@ services:
       - influxdb
     ports:
       - "9092:9092"
+    depends_on:
+      - influxdb
 
   # Chronograf — веб-интерфейс
   chronograf:
@@ -89,6 +95,8 @@ services:
     image: "chrono_config"
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
+      # Entrypoint иначе сбрасывает на uid 999 — нет записи в bind-mount ./data
+      CHRONOGRAF_AS_ROOT: "true"
     volumes:
       # Настройки Chronograf
       - ./chronograf/data/:/var/lib/chronograf/:Z

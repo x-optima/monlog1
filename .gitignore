@@ -1,8 +1,10 @@
-
 # Данные контейнеров (появляются после запуска)
 sandbox/influxdb/data/
 sandbox/chronograf/data/
 sandbox/kapacitor/data/
+
+# Локальные прогоны скрипта мониторинга
+awesome-monitoring/logs/
 
 # Заметки
 LONGRID.md

@@ -6,7 +6,7 @@
 # Поля времени: минута час день_месяца месяц день_недели
 # * * * * * = каждую минуту
 
-# Журнал в /var/log (как в задании)
+# Журнал в /var/log
 # >> дописывает stdout, 2>&1 направляет stderr туда же
 * * * * * /usr/bin/python3 /home/kvn/netology/monlog1/awesome-monitoring/awesome_monitoring.py >> /var/log/awesome-monitoring-cron.log 2>&1
 
