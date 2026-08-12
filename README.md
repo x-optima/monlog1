@@ -308,4 +308,8 @@ LOG_DIR=./awesome-monitoring/logs python3 awesome-monitoring/awesome_monitoring.
 
 ### Ответ
 
-Не прилагается.
+Создан dashboard `Sandbox overview` в Chronograf с панелями: CPU (`usage_system`), RAM (`mem.used_percent`), диск (`disk.used_percent`), число контейнеров (`docker.n_containers_running`), аптайм (`system.uptime`).
+
+Для RAM и диска в `telegraf.conf` добавлены плагины `[[inputs.mem]]` и `[[inputs.disk]]`.
+
+![Dashboard](screenshots/scr10_2.png)
